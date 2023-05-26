@@ -62,10 +62,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "LosAlpes:build:production"
+              "browserTarget": "LosAlpes:build:production",
+              "proxyConfig": "proxy.conf.json" 
             },
             "development": {
-              "browserTarget": "LosAlpes:build:development"
+              "browserTarget": "LosAlpes:build:development",
+              "proxyConfig": "proxy.conf.json" 
             }
           },
           "defaultConfiguration": "development"
