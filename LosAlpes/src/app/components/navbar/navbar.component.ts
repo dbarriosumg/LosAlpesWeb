@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CarritoService } from 'src/app/shared/services/carrito.service';
 
@@ -15,10 +16,12 @@ export class NavbarComponent {
   opened = false;
   isLoggedIn: any;
   isAdmin: any;
+
   constructor(public authService: AuthService,
     private router: Router,
     private car: CarritoService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private menuController: MenuController
     ) { 
       this.authService.isLoggedIn$.subscribe(isLoggedIn => {
         this.isLoggedIn = isLoggedIn;
@@ -33,6 +36,12 @@ export class NavbarComponent {
   ngOnInit(): void {
   
   }
+
+  openMenu() {
+    this.menuController.enable(true, 'myMenu'); // Habilita el menú con el ID 'myMenu'
+    this.menuController.open('myMenu'); // Abre el menú con el ID 'myMenu'
+  }
+  
 
   toggleCarrito() {
     this.carritoAbierto = !this.carritoAbierto;

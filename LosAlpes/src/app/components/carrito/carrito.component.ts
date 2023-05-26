@@ -1,11 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CarritoService } from 'src/app/shared/services/carrito.service';
 import Swal from 'sweetalert2';
+import { PagarComponent } from '../pagar/pagar.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-carrito',
@@ -18,6 +21,14 @@ export class CarritoComponent {
   contadorCarrito: number = 0;
   correlativo: number = 100
   mostrarFormularioPago:boolean = false
+  isPay:boolean = false
+  numeroTarjeta:number = 0
+  nombreTarjeta:string = ''
+  fechaTarjeta:any = ''
+  codigoSeguridad:number = 0
+  isAlertOpen = false;
+  public alertButtons = ['OK'];
+  public messageAlert = ['Tu numero de pedido es #2343243'];
 
 
   pagosForm = new FormGroup({
@@ -37,6 +48,7 @@ export class CarritoComponent {
     private api: ApiService,
     public authService: AuthService,
     private router: Router,
+    private cd: ChangeDetectorRef
     ) { }
 
   ngOnInit() {
@@ -52,6 +64,10 @@ export class CarritoComponent {
     nombreFiscal: [''],
     direccionFiscal: [''],
     });
+  }
+
+  get countProducts(): number{
+    return this.carritoService.getTotalProductos()
   }
 
   decreaseQuantity(producto: any) {
@@ -96,7 +112,9 @@ export class CarritoComponent {
     }, (error: HttpErrorResponse) => {
   })
 }
-
+setOpen(isOpen: boolean) {
+  this.isAlertOpen = isOpen;
+}
 generarNumeroAleatorio(): number {
   return Math.floor(Math.random() * 9000) + 1000;
 }
@@ -113,4 +131,9 @@ saveNotification(){
   this.carritoService.limpiarCarrito();
 }
 
+checkOut(){
+  this.isPay = true
+  this.cd.detectChanges();
+
+}
 }

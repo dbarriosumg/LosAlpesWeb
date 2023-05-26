@@ -1,2 +1,29 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<ion-app>
+    <ion-menu contentId="main">
+        <ion-header>
+          <ion-toolbar color="tertiary">
+            <ion-title>Menu Content</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <ion-list>
+            <ion-menu-toggle>
+              <ion-item routerLink="/sofas">
+                <ion-label>Sofas</ion-label>
+              </ion-item>
+              <ion-item routerLink="/mesas">
+                <ion-label>Mesas</ion-label>
+              </ion-item>
+              <ion-item routerLink="/sillas">
+                <ion-label>Sillas Outdoor</ion-label>
+              </ion-item>
+          
+            </ion-menu-toggle>
+          </ion-list>
+        </ion-content>
+      </ion-menu>
+
+    
+      
+    <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>

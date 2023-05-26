@@ -1,14 +1,23 @@
-<div class="d-flex justify-content-center align-items-center vh-100">
-    <form (ngSubmit)="login()" class="p-4 border rounded shadow-sm">
-      <div class="mb-3">
-        <label for="username" class="form-label">Usuario:</label>
-        <input type="text" id="username" name="username" [(ngModel)]="username" class="form-control" required>
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Contraseña:</label>
-        <input type="password" id="password" name="password" [(ngModel)]="password" class="form-control" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-    </form>
+<ion-header>
+  <ion-toolbar>
+    <ion-title  class="ion-text-center">Los Alpes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1 class="ion-text-center">Login</h1>
+  <ion-list>
+    <ion-item>
+      <ion-input [(ngModel)]="username" label="User" label-placement="floating" 
+       fill="Outline" placeholder="Enter username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="password" label="Password" type="password"  label-placement="floating" 
+       fill="Outline" placeholder="Enter a password" class="primary-input"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="ion-padding">
+    <ion-button expand="full" (click)="login()">Iniciar sesión</ion-button>
   </div>
-  
+</ion-content>

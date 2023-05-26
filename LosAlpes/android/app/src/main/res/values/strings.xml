@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">los-alpes-store</string>
+    <string name="title_activity_main">los-alpes-store</string>
+    <string name="package_name">com.losAlpes.app</string>
+    <string name="custom_url_scheme">com.losAlpes.app</string>
+</resources>

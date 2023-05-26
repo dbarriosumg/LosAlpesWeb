@@ -1,44 +1,44 @@
-<section class="content">
-    <div class="container-fluid">
-      <div class="row mt-4">
-        <div class="col-md-12 col-sm-12">
-          <div class="card h-100">
-            <div class="card-body">
-              <div class="col d-flex justify-content-center">
-                <h2>LO MÁS VENDIDO</h2>
-              </div>
-  
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-3 mb-4" *ngFor="let card of cards">
-                    <div class="card">
-                      <img [src]="card.imageN_PRO" class="card-img-top card-image" alt="Card Image">
-                      <div class="card-body">
-                        <h2 class="card-title">{{ card.nombrE_PRO }}</h2>
-                        <p class="card-text">{{ card.descripcioN_PRO }}</p>
-                        <div class="row">
-                          <div class="col-md-auto">
-                            <button (click)="agregarAlCarrito(card)" class="btn btn-secondary d-flex align-items-center justify-content-center">
-                              <mat-icon class="mr-1">add_shopping_cart</mat-icon>
-                              Add to cart
-                            </button>
-                          </div>
-                          <div class="col-md-auto">
-                            <button class="btn btn-secondary d-flex align-items-center justify-content-center" (click)="selectCard(card)">
-                              <mat-icon class="mr-1">launch</mat-icon>
-                              Ver Producto
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Los Alpes</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/home">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" routerLink="/carrito">
+      <ion-button>
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+      <span><h5><Strong>{{countProducts}}</Strong></h5></span>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/login" routerDirection="root">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="custom-content">
+  <h1 class="ion-text-center">Lo Más Vendido</h1>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let card of cards">
+        <ion-card >
+          <img class="custom-card" alt="Silhouette of mountains" [src]="card.imageN_PRO" />
+          <ion-card-header>
+            <ion-card-title>{{ card.nombrE_PRO }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            {{ card.descripcioN_PRO }}
+          </ion-card-content>
+          <ion-button (click)="agregarAlCarrito(card)"shape="round">Add To Cart</ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
