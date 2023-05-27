@@ -14,6 +14,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +34,7 @@ import { SofasComponent } from './components/salas/sofas/sofas.component';
 import { SofasCamasComponent } from './components/salas/sofas-camas/sofas-camas.component';
 import { MesasOutdoorComponent } from './components/outdoor/mesas-outdoor/mesas-outdoor.component';
 import { SillasOutdoorComponent } from './components/outdoor/sillas-outdoor/sillas-outdoor.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { SillasOutdoorComponent } from './components/outdoor/sillas-outdoor/sill
     MatSelectModule,
     MatProgressBarModule,
     HttpClientModule,
-    MatDatepickerModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-light" *ngIf="true">
+<nav class="navbar navbar-expand-lg bg-light" *ngIf="isLoggedIn">
     <div class="container-fluid">
       <a class="navbar-brand" href="/home">Los Alpes
         <!-- <img src="./assets/images/logo/logob.png" alt="logo" class="logoNav"> -->
@@ -9,53 +9,30 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              SALAS
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLink="/sofas">SOFAS</a></li>
-              <li><a class="dropdown-item" routerLink="/sofas-camas">SOFAS CAMAS</a></li>
-              <li><a class="dropdown-item" routerLink="/mesas-centro">MESAS DE CENTRO</a></li>
-            </ul>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/mesas">COMEDORES</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              COMEDORES
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLink="/mesas">MESAS</a></li>
-              <li><a class="dropdown-item" routerLink="/sillas">SILLAS</a></li>
-            </ul>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/sofas">SOFAS</a>
           </li>
-  
+          
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" routerLink="/armarios">ARMARIOS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/escritorios">ESCRITORIOS</a>
+            <a class="nav-link active" aria-current="page" routerLink="/sillas">SILLAS</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/mueblesTv">MUEBLES DE TV</a>
-          </li>
-        
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              OUTDOR
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLink="/outdoor-sillas">SILLAS</a></li>
-              <li><a class="dropdown-item" routerLink="/outdoor-mesas">MESAS</a></li>
-            </ul>
-          </li>
+    
           <li class="nav-item" *ngIf="isAdmin">
             <a class="nav-link active" aria-current="page" routerLink="/administracion">ADMINISTRACION</a>
           </li>
         </ul>
-        <span class="material-icons display-6" (click)="redirectToLogin()" style="cursor: pointer;">exit_to_app</span>
-        <span class="material-icons display-6" style="cursor: pointer;">person</span>
+        <span class="material-icons display-6" routerLink="/home" style="cursor: pointer;">home</span>
         <span class="material-icons display-6" (click)="redirectToCarrito()" style="cursor: pointer;">add_shopping_cart</span>
         <span><h2><Strong>{{countProducts}}</Strong></h2></span>
+        <span class="material-icons display-6" style="cursor: pointer;">person</span>
+        <span class="material-icons display-6" (click)="redirectToLogin()" style="cursor: pointer;">exit_to_app</span>
   
       </div>
     </div>

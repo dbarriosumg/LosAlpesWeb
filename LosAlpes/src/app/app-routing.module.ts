@@ -13,6 +13,7 @@ import { SofasCamasComponent } from './components/salas/sofas-camas/sofas-camas.
 import { MesasOutdoorComponent } from './components/outdoor/mesas-outdoor/mesas-outdoor.component';
 import { SillasOutdoorComponent } from './components/outdoor/sillas-outdoor/sillas-outdoor.component';
 import { AnyProductComponent } from './components/any-product/any-product.component';
+import { SofasComponent } from './components/salas/sofas/sofas.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -21,7 +22,7 @@ const routes: Routes = [
   {path: 'sillas', component: SillasComponent},
   {path: 'escritorios', component: EscritoriosComponent},
   {path: 'mueblesTv', component: MueblesTvComponent},
-  {path: 'sofas-camas', component: SofasCamasComponent},
+  {path: 'sofas', component: SofasComponent},
   {path: 'outdoor-mesas', component: MesasOutdoorComponent},
   {path: 'outdoor-sillas', component: SillasOutdoorComponent},
   {path: 'carrito', component: CarritoComponent},

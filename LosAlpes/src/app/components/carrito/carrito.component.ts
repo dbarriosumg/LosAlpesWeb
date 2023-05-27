@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { CarritoService } from 'src/app/shared/services/carrito.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
@@ -14,11 +15,30 @@ import Swal from 'sweetalert2';
 })
 export class CarritoComponent {
  
+  constructor(private carritoService: CarritoService,
+    private formBuilder: FormBuilder,
+    private api: ApiService,
+    public authService: AuthService,
+    private router: Router,
+    ) { }
   productos: any[] = [];
   contadorCarrito: number = 0;
   correlativo: number = 100
   mostrarFormularioPago:boolean = false
-
+  ngOnInit() {
+    this.productos = this.carritoService.obtenerProductos();
+    this.pagosForm = this.formBuilder.group({
+      numeroT: ['',Validators.required],
+      fechaVencimiento: ['',Validators.required],
+      nombreTitular: ['',Validators.required],
+      email: ['',Validators.required],
+      direccionEnvio: ['',Validators.required],
+      descripcion: ['',Validators.required],
+      nit: [''],
+      nombreFiscal: [''],
+      direccionFiscal: [''],
+    });
+  }
 
   pagosForm = new FormGroup({
     numeroT: new FormControl(''),
@@ -26,34 +46,14 @@ export class CarritoComponent {
     nombreTitular: new FormControl(''),
     email: new FormControl(''),
     direccionEnvio: new FormControl(''),
+    descripcion: new FormControl(''),
     nit: new FormControl(''),
     nombreFiscal: new FormControl(''),
     direccionFiscal: new FormControl(''),
-    descripcion: new FormControl(''),
   });
 
-  constructor(private carritoService: CarritoService,
-    private formBuilder: FormBuilder,
-    private api: ApiService,
-    public authService: AuthService,
-    private router: Router,
-    ) { }
-
-  ngOnInit() {
-    this.productos = this.carritoService.obtenerProductos();
-    this.pagosForm = this.formBuilder.group({
-    numeroT: ['',Validators.required],
-    fechaVencimiento: ['',Validators.required],
-    nombreTitular: ['',Validators.required],
-    email: ['',Validators.required],
-    direccionEnvio: ['',Validators.required],
-    descripcion: ['',Validators.required],
-    nit: [''],
-    nombreFiscal: [''],
-    direccionFiscal: [''],
-    });
-  }
-
+    
+  
   decreaseQuantity(producto: any) {
     if (producto.quantity > 1) {
       producto.quantity--;
@@ -113,4 +113,5 @@ saveNotification(){
   this.carritoService.limpiarCarrito();
 }
 
+ 
 }

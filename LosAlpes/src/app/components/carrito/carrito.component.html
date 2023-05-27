@@ -1,1 +1,143 @@
-<p>carrito works!</p>
+<div class="container">
+    <h2>Carrito de Compras</h2>
+  
+    <div *ngIf="productos.length > 0; else noItems">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let producto of productos; let i = index">
+          <div class="item">
+            <div class="item-image">
+              <img [src]="producto.img" [alt]="producto.nombre" [ngClass]="'img-carrito'">
+            </div>
+            <div class="item-details">
+              <h4>{{ producto.nombre }}</h4>
+              <p>Precio: ${{ producto.precio }}</p>
+              <div class="quantity">
+                <button class="btn btn-primary mr-2" (click)="decreaseQuantity(producto)">-</button>
+                <span>{{ producto.quantity }}</span>
+                <button class="btn btn-primary ml-2 mr-2" (click)="increaseQuantity(producto)">+</button>
+                <button class="btn btn-danger ml-2" (click)="eliminarProducto(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+  
+      <div class="total">
+        <h2><strong>Total: ${{ calcularTotal() }}</strong></h2>
+        <button class="btn btn-primary" (click)="mostrarFormularioPago = true">Pagar</button>
+      </div>
+    </div>
+  
+    <ng-template #noItems>
+      <p>No hay productos en el carrito.</p>
+    </ng-template>
+  
+    <div *ngIf="mostrarFormularioPago">
+      <div class="container mt-4">
+        <h2 class="text-center">Pago con Tarjeta de Crédito / Débito</h2>
+  
+        <div class="container">
+          <div class="container">
+            <div class="row justify-content-center m-2"  [formGroup]="pagosForm">
+              <div class="col-md-auto">
+                <div class="row">
+                  <div class="col-6">
+                    <!-- Primer formulario -->
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Numero De Tarjeta</mat-label>
+                      <input matInput formControlName="numeroT" type="text" autocomplete="off">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-6">
+                    <!-- Segundo formulario -->
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Fecha De Vencimiento</mat-label>
+                      <input matInput formControlName="fechaVencimiento" type="text" autocomplete="off">
+                    </mat-form-field>
+                  </div>
+                </div>
+          
+                <div class="row">
+                  <div class="col-6">
+                    <!-- Tercer formulario -->
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Nombre Del Titular</mat-label>
+                      <input matInput formControlName="nombreTitular" type="text" autocomplete="off">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-6">
+                    <!-- Cuarto formulario -->
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Email</mat-label>
+                      <input matInput formControlName="email" type="text" autocomplete="off" required>
+                    </mat-form-field>
+                  </div>
+                </div>
+          
+                <div class="row">
+                  <div class="col-6">
+                    <!-- Quinto formulario -->
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Dirección Envio</mat-label>
+                      <input matInput formControlName="direccionEnvio" type="text" autocomplete="off" required>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-6">
+                    <!-- Sexto formulario -->
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Descripción</mat-label>
+                      <input matInput formControlName="descripcion" type="text" autocomplete="off" required>
+                    </mat-form-field>
+                  </div>
+                </div>
+          
+                <div class="row">
+                  <div class="col-6">
+                    <!-- Séptimo formulario -->
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Nit</mat-label>
+                      <input matInput formControlName="nit" type="text" autocomplete="off">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-6">
+                    <!-- Octavo formulario -->
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Nombre Fiscal</mat-label>
+                      <input matInput formControlName="nombreFiscal" type="text" autocomplete="off">
+                    </mat-form-field>
+                  </div>
+                </div>
+          
+                <div class="row">
+                  <div class="col-6">
+                    <!-- Noveno formulario -->
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Dirección Fiscal</mat-label>
+                      <input matInput formControlName="direccionFiscal" type="text" autocomplete="off">
+                    </mat-form-field>
+                  </div>
+                </div>
+          
+              </div>
+            </div>
+          
+            <div class="row mt-2 justify-content-center">
+              <div class="col-md-auto" style="text-align: center;">
+                <button mat-raised-button type="button" color="primary" class="btn btn-success me-2" (click)="realizarPago()">
+                   Pagar
+                </button>
+                <button mat-raised-button type="button" color="warn" class="btn btn-danger">
+                  <mat-icon>refresh</mat-icon> Clear
+                </button>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  

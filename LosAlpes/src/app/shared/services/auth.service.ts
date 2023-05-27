@@ -52,11 +52,13 @@ export class AuthService implements OnInit{
 
 login(username: string, password: string): Observable<boolean> {
   return this.api.get(`/api/login?usuario=${username}&pass=${password}`)
-    .pipe(map((res: any) => {
+    .pipe(
+      map((res: any) => {
         if (res && res[0].tipo === 'admin') {
+          localStorage.setItem('isAdmin', 'true');
         }
-        // localStorage.setItem('isLoggedIn', 'true');
-        this.clienteId = res[0].iD_CLIENTE
+        localStorage.setItem('isLoggedIn', 'true');
+        this.clienteId = res[0].iD_CLIENTE;
         return true;
       }),
       catchError((error: HttpErrorResponse) => {
@@ -64,6 +66,7 @@ login(username: string, password: string): Observable<boolean> {
       })
     );
 }
+
 
 
   logout() {

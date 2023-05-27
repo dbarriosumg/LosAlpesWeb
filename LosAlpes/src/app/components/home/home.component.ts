@@ -46,7 +46,7 @@ export class HomeComponent {
       idAlmacen: card.inventariO_ID_ALMACEN,
       nombre: card.nombrE_PRO,
       img: card.imageN_PRO,
-      precio: card.preciO_ALM,
+      precio: card.preciO_VENTA,
       quantity: 1,
     }
     this.carritoService.agregarProducto(obj)
